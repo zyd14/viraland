@@ -13,6 +13,7 @@ import sys
 from setup import Compile
 from configuration import Configuration
 from parsers import JPaudaParser
+from visualize import VisualVirusLand
 
 class Viraland:
     def __init__(self, configpath):
@@ -46,3 +47,10 @@ if argc == 2 and ".vl" in argv[1]:
     c = Compile(vl.config.vlhome)
     c.exe()
     vl.run()
+if argc == 2 and argv[1] == "-v":
+    vlhome = input("Enter path of the home directory of VirusLand: ")
+    try:
+        vs = VisualVirusLand(vlhome)
+        vs.exe()
+    except:
+        print ("Run time error:")
