@@ -1,10 +1,8 @@
-# Class of managing Parsers: instantiate this class so that command of parsers
-# cand mathc user's system setting
-# TODO: finish this class. Also, parser must follow the same format!
-# Parser must be like this: $ ./parser [input file] [output file]
+# Operating parsers to extract files from output of other programs and prepare data for 
 import os
 
 class JPaudaParser:
+
     def __init__(self, vlhome, dirin, dirout):
         self.cmd = "java JPauda"
         self.vlhome = vlhome
@@ -27,8 +25,11 @@ class JPaudaParser:
         os.chdir(currdir)
 
 class CPaudaParser:
-    def __init__(self):
+    def __init__(self, vlhome, dirin, dirout):
         self.cmd = "./cparser"
+        self.vlhome = vlhome
+        self.dirin = dirin
+        self.dirout = dirout
     def parse (self, inpath, outpath):
         cmdin = self.cmd + " " + str(inpath) + " " + str(outpath)
         try:

@@ -23,13 +23,16 @@ class Viraland:
             except:
                 self.config.dir = os.getenv("HOME") # if directory not found, make it home
         if self.config.log != None and self.config.log == True:
-            self.log = open (self.config.dir +"/log.txt", "w+")
+            self.logf = open (self.config.dir +"/log.txt", "w+")
+        self.logc = []
     def run (self):
-        self.config.info()
+        self.logc.append(self.config.title)
         parser = JPaudaParser(self.config.vlhome, self.config.parsein, self.config.parseout)
         parser.parse()
-        print ("Output directory: " + self.config.dir)
-
+        self.logc.append("Parsing complete")
+        for entry in self.logc:
+            self.logf.write(entry + "\n")
+        self.logf.close()
 
 # Get argument
 argv = sys.argv
@@ -38,8 +41,8 @@ argc = len (argv)
 # VirusLand will only execute when these is exactly one argument and it is a configuration file
 if argc == 2 and ".vl" in argv[1]:
     vl= Viraland(argv[1])
+    
+    # prepare binary files
     c = Compile(vl.config.vlhome)
     c.exe()
     vl.run()
-    # prepare binary files
-
