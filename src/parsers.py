@@ -2,27 +2,35 @@
 import os
 
 class JPaudaParser:
+    """Class that extract key information from output of Pauda and save to a new
+    file. Example:
+    >>> parser = JPaudaParser()
+    >>> inpath = "data/run01.fastq"
+    >>> outpath = "data/out01.fastq"
+    >>> parser.parse(inpath, outpath)
+    """
+    def __init__(self, config):
+        self.cmd1 = config.vlhome + '/krona/Krona_VirusLand/TaxonomyFromGBK.exe"
+        self.path = config.vlhome + '/gbks/*/*.gbk' #Replace this with the path where the GBk files are
+        self.fileNames = glob.glob(self.path)
+        self.createFile()
+        self.runTaxFromGBK(config.vlhome + '/krona/Krona_VirusLand/compiledGBKs', config.vlhome + '/krona/Krona_VirusLand/taxOut')
 
-    def __init__(self, vlhome, dirin, dirout):
-        self.cmd = "java JPauda"
-        self.vlhome = vlhome
-        self.dirin = dirin
-        self.dirout = dirout
+    def createFile(self):
+        myFile = open(config.vlhom + 'krona/Krona_VirusLand/compiledGBKs', 'w')  #creates a file called 'jonsFile' and allows it to read and write
+        for x in self.fileNames:
+            print(x)
+            myFile.write(x + '\n')
 
-    def parse(self):
+    def runTaxFromGBK(self, inpath, outpath):
         """Combine input and output file path into a single command and make
         JPauda extract data from input file and save to output file"""
-        currdir = os.getcwd()
-        os.chdir (self.vlhome)
-        os.chdir ("../bin")
-        print(os.getcwd())
-        for fin in os.listdir(self.dirin):
-            cmdin = self.cmd + " " + str(self.dirin + "/" + fin) + " " + str(self.dirout + "/" + "out-" + fin)
-            try:
-                os.system(cmdin)
-            except:
-                print ("Canno execute command: " + cmdin)
-        os.chdir(currdir)
+        cmdin = self.cmd1 + " " + str(inpath) + " " + str(outpath)
+        print("Cmdin: " + cmdin)
+        try:
+            os.system(cmdin)
+        except:
+            print ("Cannot execute command: " + cmdin)
 
 class CPaudaParser:
     def __init__(self, vlhome, dirin, dirout):

@@ -1,18 +1,18 @@
 [TITLE] run01
-[VL-HOME] /home/yhou/Documents/VirusLand/src
-[DIR] /home/yhou/Documents/run01
+[VL-HOME] /home/Desktop/Zach/virusLand
+[DIR] /home/Desktop/Zach/run1
 [LOG] yes
 [KEEP] yes
-[VELVET-INPUT] /path/to/directory
-[VELVET-FORMAT]
-[VELVET-KMER]
-[VELVET-READTYPE]
-[VELVET-OUTPUT] /path/to/directory
-[EMBOSS-INPUT] /path/to/directory
-[EMBOSS-OUTPUT] /path/to/directory
-[PAUDA-INPUT] /path/to/directory
-[PAUDA-OUTPUT] /path/to/directory
-[PARSE-INPUT] /home/yhou/Documents/data/pauda-out
-[PARSE-OUTPUT] /home/yhou/Documents/data/parse-out
-[VISUALIZATION] no
+[VELVET-INPUT] /home/Desktop/Zach/virusLand/vIn/
+[VELVET-FORMAT] -fasta
+[VELVET-KMER] 31
+[VELVET-READTYPE] -shortPaired
+[VELVET-OUTPUT] /home/Desktop/Zach/virusLand/vOut
+[EMBOSS-INPUT] /home/Desktop/Zach/virusLand/vOut
+[EMBOSS-OUTPUT] /home/Desktop/Zach/virusLand/emOut/
+[PAUDA-INPUT] /home/Desktop/Zach/virusLand/emOut/
+[PAUDA-INDEX] /home/Desktop/Zach/virusLand/pIndex/
+[PAUDA-OUTPUT] /home/Desktop/Zach/virusLand/paudaOut/
+[PARSE-INPUT] /home/Desktop/Zach/virusLand
+[PARSE-OUTPUT] /home/Desktop/Zach/virusLand
 [STOP]

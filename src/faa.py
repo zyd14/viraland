@@ -1,6 +1,12 @@
 class FaaPack:
     def __init__(self):
-        self.folder = input('Enter the folder of faas that need to be concatenated')
+        self.folder = '/home/lsb456/vLand/genomes'
+        #Change later
+        self.out = '/home/lsb456/vLand/faa'
+        self.finiFile = None
+        self.concatFiles()
     def concatFiles(self):
-        subprocess.call(['cd', self.folder])
-        subprocess.call(['cat', '*', '.faa', '>', '../allTogether.faa'])
+        self.outCmd = self.folder + '/*/*.faa > ' + self.out + '/allTogether.faa'
+        self.finiFile = self.out + '/allTogether.faa'
+        os.system('cd ' + self.folder)
+        os.system('cat ' + self.outCmd)

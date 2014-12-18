@@ -23,6 +23,7 @@ class Configuration:
         self.embossout = None
         self.paudain = None
         self.paudaout = None
+        self.paudaindex = None
         self.parsein = None
         self.parseout = None
         self.setconfig(str(fpath))
@@ -43,6 +44,7 @@ class Configuration:
         print ("[EMBOSS-OUTPUT] " + str(self.embossout))
         print ("[PAUDA-INPUT] " + str(self.paudain))
         print ("[PAUDA-OUTPUT] " + str(self.paudaout))
+        print ("[PAUDA-INDEX] " + str(self.paudaindex))
         print ("[PARSE-INPUT] " + str(self.parsein))
         print ("[PARSE-OUTPUT] " + str(self.parseout))
 
@@ -123,7 +125,7 @@ class Configuration:
                     else:
                         print ("[Error] Cannot find output for emboss!")
                         sys.exit()
-                # Get user's configuration of input for velvet
+                # Get user's configuration of input for pauda
                 if line.startswith("[PAUDA-INPUT]"):
                     option = line.split("[PAUDA-INPUT]")[1].strip()
                     if option != "":
@@ -131,7 +133,7 @@ class Configuration:
                     else:
                         print ("[Error] Cannot find input for pauda!")
                         sys.exit()
-                # Get user's configuration of output for velvet
+                # Get user's configuration of output for pauda
                 if line.startswith("[PAUDA-OUTPUT]"):
                     option = line.split("[PAUDA-OUTPUT]")[1].strip()
                     if option != "":
@@ -139,7 +141,17 @@ class Configuration:
                     else:
                         print ("[Error] Cannot find output for pauda!")
                         sys.exit()
-                # Get user's configuration of input for velvet
+
+                 # Get user's configuration of index file for pauda
+                elif line.startswith("[PAUDA-INDEX]"):
+                    option = line.split("[PAUDA-INDEX]")[1].strip()
+                    if option != "":
+                        self.paudaindex = option
+                    else:
+                        print ("[Error] Cannot find input for pauda!")
+                        sys.exit()
+
+                # Get user's configuration of input for visualization parser
                 if line.startswith("[PARSE-INPUT]"):
                     option = line.split("[PARSE-INPUT]")[1].strip()
                     if option != "":
@@ -147,7 +159,7 @@ class Configuration:
                     else:
                         print ("[Error] Cannot find input for parser!")
                         sys.exit()
-                # Get user's configuration of output for velvet
+                # Get user's configuration of output for visualization parser
                 if line.startswith("[PARSE-OUTPUT]"):
                     option = line.split("[PARSE-OUTPUT]")[1].strip()
                     if option != "":

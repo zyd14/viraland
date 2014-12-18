@@ -19,7 +19,7 @@ class Compile:
 		currdir = os.getcwd()
 		
 		os.chdir(self.vlhome)
-		os.chdir("../")
+		#os.chdir("../")
 		# create a folder for executable files, if not exist
 		if not os.path.exists("bin/") or os.listdir("bin/") == "":
 			os.makedirs ("bin/")
